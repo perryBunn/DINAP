@@ -1,0 +1,4 @@
+---
+version: v1.0
+LOG_DIR: "LOGS"
+SAVE_DIR: ~/DiNaO_Saves
