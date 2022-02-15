@@ -20,12 +20,25 @@ import yaml
 from lib import namespace
 from lib.logger import logging_function
 
+
+def dump(file: Path):
+    pass
+
+
 def driver(config, logger, save: Path=None):
+    if save:
+        dump(save)
+        return
     save_dir = Path(config["SAVE_DIR"])
     os.chdir(save_dir.as_posix())
     save_subdirs = [x for x in save_dir.iterdir() if x.is_dir()]
     if len(save_dir) > 1:
         logger.debug(f"Multiple save profiles found: {save_subdirs}")
+        profile = input("Which profile do you want dump a save from? ")
+        os.chdir(Path(profile.strip()))
+    else:
+        os.chdir(save_subdirs[0])
+
 
 def main(arg: namespace, save: str):
     """
